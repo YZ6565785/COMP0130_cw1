@@ -52,7 +52,7 @@ for i=1:size(outliers, 1)
 end
 
 
-% ================================================= Multi-epoch Positioning
+% ====================================================== GNSS Kalman Filter
 state_init = Solutions(:,1);
 P_matrix =  zeros(8);
 P_matrix(1,1) = 100;
