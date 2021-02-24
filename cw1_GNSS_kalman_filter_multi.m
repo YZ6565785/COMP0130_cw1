@@ -1,4 +1,4 @@
-function [States] = cw1_GNSS_kalman_filter_multi(Ranges, Rates)
+function [States] = cw1_GNSS_kalman_filter_multi(Ranges, Rates, state_init, P_matrix)
 % cw1_GNSS_kalman_filter_multi() - compute the position at multiple epochs 
 % using the all rows of the pseudo-range measurements. Starting by an 
 % initial position at the centre of the Earth.
@@ -11,18 +11,20 @@ function [States] = cw1_GNSS_kalman_filter_multi(Ranges, Rates)
 %
 % Inputs:
 %   Ranges           Pesudo-ranges table read from files.
-%   r_ea_e           initial position (in NED).
+%   state_init       initial state (in ECEF).
+%                    row 1: position x
+%                    row 2: position y
+%                    row 3: position z
+%                    row 4: velocity x
+%                    row 5: velocity y
+%                    row 6: velocity z
+%                    row 7: clock offset
+%                    row 8: clock drift
+%   P_matrix         initial error covariance matrix.
 %
 % Outputs:
-%   Positions        Computed positions for every epochs with outliers 
-%                    removed. (ECEF).
-%   outliers         Detected outliers.
-%                    Column 1: Epoch
-%                    Column 2: iteration
-%                    Column 3: satellite number
-%                    Column 4: residual
-%                    Column 5: index of the measurement that the outlier
-%                              is at.
+%   States           Computed positions and velocities for every epochs 
+%                    with outliers removed. (ECEF).
 
 % Copyright 2021, Yuhang Zhang
 % License: BSD; see license.txt for details
@@ -41,8 +43,8 @@ numbers = Ranges{1, 2:end};
 
 % initialize the Kalman filter state vetor estimate 
 % & error covariance matrix
-[x_est,P_matrix] = Initialise_GNSS_KF;
-x_0_plus = x_est;
+% [x_est,P_matrix] = Initialise_GNSS_KF;
+x_0_plus = state_init;
 P_0_plus = P_matrix;
 
 
@@ -172,13 +174,14 @@ for epoch=1:size(times,1)
 %     P_k_plus
     
     % store the state at each epoch
-    [L_b,lambda_b,h_b,v_eb_n] = pv_ECEF_to_NED(x_k_plus(1:3),x_k_plus(4:6));
+%     [L_b,lambda_b,h_b,v_eb_n] = pv_ECEF_to_NED(x_k_plus(1:3),x_k_plus(4:6));
 %     disp("Answer:");
 %     disp("latitude: " + L_b * rad_to_deg );
 %     disp("longitude: " + lambda_b * rad_to_deg );
 %     disp("height: " + h_b );
 %     disp(v_eb_n);
-    States = [States; times(epoch) L_b * rad_to_deg lambda_b * rad_to_deg h_b v_eb_n'];
+%     States = [States; times(epoch) L_b * rad_to_deg lambda_b * rad_to_deg h_b v_eb_n'];
+    States = [States x_k_plus(1:6)];
     
     
     % prepare for next epoch
