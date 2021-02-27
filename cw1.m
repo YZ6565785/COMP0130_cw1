@@ -74,8 +74,6 @@ for i=1:size(States,2)
     States_NED = [States_NED; lat_deg long_deg h_b v_eb_n'];
 end
 
-[correct_DR] = cw1_GNSS_DR_integration(States_NED, D);
-% States_NED
 
 
 

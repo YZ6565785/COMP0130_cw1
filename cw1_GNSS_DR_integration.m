@@ -1,4 +1,4 @@
-function [C_DR] = cw1_GNSS_DR_integration(States_NED, D)
+
 
 % load constants
 Define_Constants;
@@ -119,4 +119,3 @@ for i= 2:length(t)
 end
 C_DR(:,1) = C_DR(:,1)*rad_to_deg;
 C_DR(:,2) = C_DR(:,2)*rad_to_deg;
-end
