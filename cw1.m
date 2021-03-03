@@ -25,7 +25,7 @@ long_deg = lambda_b * rad_to_deg;
 disp("Answer:");
 disp("lat: " + num2str(lat_deg,'%.6f'));
 disp("long: " + num2str(long_deg,'%.6f'));
-disp("height: " + h_b);
+disp("height: " + num2str(h_b,'%.6f'));
 disp("v north: " + v_eb_n(1));
 disp("v east: " + v_eb_n(2));
 disp("v down: " + v_eb_n(3));
@@ -51,6 +51,10 @@ for i=1:size(outliers, 1)
         outliers(i,4)+"]");
 end
 
+% remove measurement which has largest residuals
+% ind_remove = outliers(1,5);
+% Ranges(:,ind_remove+1) = [];
+% Rates(:,ind_remove+1) = [];
 
 % ====================================================== GNSS Kalman Filter
 state_init = Solutions(:,1);
@@ -81,7 +85,7 @@ end
 % new integration function defined
 [correct_DR] = cw1_DR_GNSS_integration(States_NED, D, L_K, Lam_K, VN, VE);
 % convert to degree
-correct_Deg = [];
+correct_Deg = []; 
 for i=1:size(correct_DR,2)
     lat_deg = correct_DR(2,i) * rad_to_deg;
     long_deg = correct_DR(3,i) * rad_to_deg;

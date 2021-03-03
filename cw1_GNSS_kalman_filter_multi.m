@@ -48,7 +48,7 @@ x_0_plus = state_init;
 P_0_plus = P_matrix;
 
 
-ts = times(2)-times(1); % propagation interval (epoch every 0.5s)
+ts = 0.5; % propagation interval (epoch every 0.5s)
 % compute the transition matrix
 Phi_k_minus_1 = [
     eye(3) ts*eye(3) zeros(3,1) zeros(3,1);
@@ -75,6 +75,7 @@ Q_k_minus_1 = [
 
 
 for epoch=1:size(times,1)
+% for epoch=1:2
     % propagate the state estimates:
     x_k_minus = Phi_k_minus_1*x_0_plus;
 %     x_k_minus
@@ -138,23 +139,21 @@ for epoch=1:size(times,1)
         zeros(size(numbers,2),3) -u_aj_e' ...
         zeros(size(numbers,2),1) ones(size(numbers,2),1)
     ];
-%     H_k
-    
+
     % compute the measurement noise covariance matrix
     sigma_p = 10;
     sigma_r = 0.05;
     R_k = eye(size(numbers,2)*2);
     for i=1:size(R_k,1)
-        if i<=size(R_k,1)
+        if i<=size(numbers,2)
             R_k(i,i) = sigma_p^2;
         else
             R_k(i,i) = sigma_r^2;
         end
     end
-    
+%     R_k
     % compute the Kalman gain matrix
     K_k = P_k_minus*H_k'/(H_k*P_k_minus*H_k'+R_k);
-%     K_k
 
     % compute the measurement innovation vector 
     ranges = Ranges{epoch+1, 2:end}';

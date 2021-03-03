@@ -86,7 +86,7 @@ for epoch=2:size(times,1)
     H_k(2,4) = -1;
     
     % meridian radius and transverse radius
-    lat_k = lats_G(epoch)*deg_to_rad;
+    lat_k = lats_G(epoch);
     [R_N,R_E]= Radii_of_curvature(lat_k);
     h_k = heights(epoch);
     

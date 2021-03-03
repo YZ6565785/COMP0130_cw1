@@ -10,10 +10,10 @@ function [x_plus] = cw1_single_epoch_positioning(Ranges)
 % This function created 22/02/2021 by Yuhang Zhang
 %
 % Inputs:
-%   L_b           latitude (rad)
+%   Ranges        Pseudo-ranges read from files
 %
 % Outputs:
-%   r_eb_e        Cartesian position of body frame w.r.t. ECEF frame
+%   x_plus        Cartesian position of body frame w.r.t. ECEF frame
 
 % Copyright 2021, Yuhang Zhang
 % License: BSD; see license.txt for details
