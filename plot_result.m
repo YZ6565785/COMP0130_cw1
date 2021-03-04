@@ -7,6 +7,9 @@ close all;
 x = Solutions_NED(:,1); % lat
 y = Solutions_NED(:,2); % long
 plot(x,y)
+title("Position After Multi-epoch positioning");
+xlabel("Latitude (deg)");
+ylabel("Longitude (deg)");
 savefig("multi_epoch_pos");
 
 %% plot after Kalman Filter with all measurement 
@@ -14,6 +17,9 @@ close all;
 x = States_out_NED(:,1); % lat
 y = States_out_NED(:,2); % long
 plot(x,y)
+title("GNSS Position After KF with All Measurements");
+xlabel("Latitude (deg)");
+ylabel("Longitude (deg)");
 savefig("Kalman_Filter_pos");
 
 
@@ -22,6 +28,9 @@ close all;
 x = States_NED(:,1); % lat
 y = States_NED(:,2); % long
 plot(x,y)
+title("GNSS Position After KF with Outlier Measurement Removed");
+xlabel("Latitude (deg)");
+ylabel("Longitude (deg)");
 savefig("Kalman_Filter_pos");
 
 %% final position | after DR GNSS integration
