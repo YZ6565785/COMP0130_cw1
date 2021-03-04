@@ -99,14 +99,11 @@ end
 % new integration function defined
 [correct_DR] = cw1_DR_GNSS_integration(States_NED, D, L_K, Lam_K, VN, VE);
 % convert to degree
-correct_Deg = []; 
+correct_Deg = [];
 for i=1:size(correct_DR,2)
     lat_deg = correct_DR(2,i) * rad_to_deg;
     long_deg = correct_DR(3,i) * rad_to_deg;
     correct_Deg = [
-        correct_Deg; 
+        correct_Deg;
         correct_DR(1,i) lat_deg long_deg correct_DR(4,i) correct_DR(5,i)];
 end
-
-
-
