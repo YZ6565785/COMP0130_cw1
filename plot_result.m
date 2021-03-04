@@ -103,6 +103,10 @@ plot(t,original_heading)
 hold off
 
 legend("Smoothed", "Original");
+title("Heading Comparison between Original and Smoothed Heading");
+xlabel("time (s)");
+ylabel("heading (degS)");
+savefig("heading_comparison");
 
 %% final position | after DR GNSS integration
 close all;

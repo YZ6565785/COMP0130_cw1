@@ -101,6 +101,4 @@ for itr=1:10
     r_ea_e = x_plus(1:3);
 end
 
-
-
 % Ends

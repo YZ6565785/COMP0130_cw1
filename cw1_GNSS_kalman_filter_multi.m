@@ -187,6 +187,4 @@ for epoch=1:size(times,1)
     P_0_plus = P_k_plus;
 end
 
-
-
 % Ends

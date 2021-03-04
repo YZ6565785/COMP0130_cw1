@@ -1,4 +1,5 @@
 function [Heading] = cw1_smooth_heading(D)
+
 Define_Constants;
 weight = 0.30;
 DR = table2array(D);

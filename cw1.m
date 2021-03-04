@@ -107,3 +107,9 @@ for i=1:size(correct_DR,2)
         correct_Deg;
         correct_DR(1,i) lat_deg long_deg correct_DR(4,i) correct_DR(5,i)];
 end
+
+
+% ====================================================== output csv to file
+
+output = [correct_Deg Heading];
+csvwrite("Output_Profile.csv", output);
