@@ -1,7 +1,6 @@
 function [States] = cw1_GNSS_kalman_filter_multi(Ranges, Rates, state_init, P_matrix)
-% cw1_GNSS_kalman_filter_multi() - compute the position at multiple epochs 
-% using the all rows of the pseudo-range measurements. Starting by an 
-% initial position at the centre of the Earth.
+% cw1_GNSS_kalman_filter_multi() - compute the position and velocity
+% directly from the pseudo-range and pseudo-range rate measurements.
 %
 % Reference:
 % COMP0130: ROBOT VISION AND NAVIGATION
