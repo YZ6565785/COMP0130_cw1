@@ -1,0 +1,36 @@
+%
+% run cw1 before run this!!!
+
+close all;
+
+
+%% plot after multi-epoch positioning and outlier removed
+close all;
+x = Solutions_NED(:,1); % lat
+y = Solutions_NED(:,2); % long
+plot(x,y)
+savefig("Kalman_Filter_pos");
+
+
+
+
+%% final position and velocity
+close all;
+% plot corrected position
+x = correct_Deg(:,2); % lat
+y = correct_Deg(:,3); % long
+% y = [1:size(Solutions_NED,1)];
+plot(x,y)
+savefig("corrected_pos");
+
+
+% plot corrected velocity
+v_north = correct_Deg(:,4);
+v_east = correct_Deg(:,5);
+
+plot(num,v_north);
+savefig("corrected_vel_north");
+plot(num,v_east);
+savefig("corrected_vel_east");
+% plot(Solutions_NED(:,1), Solutions_NED(:,2))
+
