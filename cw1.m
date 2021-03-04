@@ -91,9 +91,10 @@ for i=1:size(States,2)
     States_NED = [States_NED; lat_deg long_deg h_b v_eb_n'];
 end
 
+[Heading] = cw1_smooth_heading(D);
 
 % ===================================================== DR/GNSS Integration
-[L_K, Lam_K, VN, VE] = cw1_dead_reckoning(States_NED, D);
+[L_K, Lam_K, VN, VE] = cw1_dead_reckoning(States_NED, D, Heading);
 % [correct_DR] = cw1_GNSS_DR_integration(States_NED, D, L_K, Lam_K, damped_vn, damped_ve, VN, VE);
 % new integration function defined
 [correct_DR] = cw1_DR_GNSS_integration(States_NED, D, L_K, Lam_K, VN, VE);

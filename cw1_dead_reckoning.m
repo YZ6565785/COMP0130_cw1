@@ -1,4 +1,4 @@
-function [L_K, Lam_K, VN, VE] = cw1_dead_reckoning(States_NED, D)
+function [L_K, Lam_K, VN, VE] = cw1_dead_reckoning(States_NED, D, Heading)
 
 
 % load constants
@@ -9,7 +9,7 @@ DR = table2array(D);
 % average speed
 v_mean = (DR(:,2)+DR(:,3)+DR(:,4)+DR(:,5))/4;
 % heading
-heading = DR(:,7)*deg_to_rad;
+heading = Heading*deg_to_rad;
 V_n = [];
 V_e = [];
 % average velocity
