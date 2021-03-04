@@ -20,7 +20,9 @@ plot(DR_lat,DR_long, 'g');
 plot(correct_lat,correct_long,'r');
 plot(0, 0, 'o')
 hold off
-
+title("Position Comparison between GNSS, DR, and Integration");
+xlabel("Latitude (deg)");
+ylabel("Longitude (deg)");
 legend("GNSS KF", "DR", "Corrected from Integration");
 savefig("pos_comparison");
 %% Compare velocity North between GNSS KF, DR, and corrected after integration
@@ -37,6 +39,9 @@ plot(t,v_correct,'r');
 hold off
 
 legend("GNSS KF", "DR", "Corrected from Integration");
+title("Velocity North Comparison between GNSS, DR, and Integration");
+xlabel("time (s)");
+ylabel("velocity (m/s)");
 savefig("vel_north_comparison");
 %% Compare velocity East between GNSS KF, DR, and corrected after integration
 close all;
@@ -52,12 +57,18 @@ plot(t,v_correct,'r');
 hold off
 
 legend("GNSS KF", "DR", "Corrected from Integration");
+title("Velocity East Comparison between GNSS, DR, and Integration");
+xlabel("time (s)");
+ylabel("velocity (m/s)");
 savefig("vel_east_comparison");
 %% plot after multi-epoch positioning
 close all;
 x = Solutions_NED(:,1); % lat
 y = Solutions_NED(:,2); % long
 plot(x,y)
+title("Position After Multi-epoch positioning");
+xlabel("Latitude (deg)");
+ylabel("Longitude (deg)");
 savefig("multi_epoch_pos");
 
 %% plot after Kalman Filter with all measurement 
@@ -65,6 +76,9 @@ close all;
 x = States_out_NED(:,1); % lat
 y = States_out_NED(:,2); % long
 plot(x,y)
+title("GNSS Position After KF with All Measurements");
+xlabel("Latitude (deg)");
+ylabel("Longitude (deg)");
 savefig("Kalman_Filter_pos");
 
 
@@ -73,6 +87,9 @@ close all;
 x = States_NED(:,1); % lat
 y = States_NED(:,2); % long
 plot(x,y)
+title("GNSS Position After KF with Outlier Measurement Removed");
+xlabel("Latitude (deg)");
+ylabel("Longitude (deg)");
 savefig("Kalman_Filter_pos");
 
 %% plot heading compare with original
